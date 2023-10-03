@@ -2,16 +2,16 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/aula1')
+@app.route('/')
 def index():
-    return render_template('aula1.html')
+    return render_template('initPage.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
-
-@app.route('/outrarora')
-def outra():
-    return "<h1>Outra Rota</h1>"\
-        "<p>Olha a tag html do paragrafo aqui </p>"\
-        "<img src = 'https://picsum.photos/200/300'>"
+@app.route('/login/cliente')
+def cliente():
+    return render_template('cliente.html')
 
 app.run()
