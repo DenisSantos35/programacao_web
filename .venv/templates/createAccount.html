@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta</title>
+</head>
+<body>
+    <h1>{{titulo}}</h1>
+    <form action="/login" method="post">
+        <p><label for="user">Usuário: </label><input type="text" name="name" placeholder="Digeite seu nome"></p>
+        <p><label for="senha">Senha:</label><input type="text" name="senha" placeholder="Digeite sua"></p>
+        <hr>
+        <p><input type="submit" value="CADASTRAR"></p>
+        <p>{{resposta}}</p>
+    </form>
+    
+</body>
+</html>
