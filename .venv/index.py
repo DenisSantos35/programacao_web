@@ -2,10 +2,12 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# ************** route pagina inicial ******************************
 @app.route('/')
 def initPage():
     return render_template('index.html', titulo = "PÁGINA INICIAL")
 
+# **************** route pagina login ******************************
 @app.route('/login')
 def login():
     return render_template('login.html', titulo = 'LOGIN')

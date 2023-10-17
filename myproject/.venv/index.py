@@ -1,6 +1,23 @@
 from flask import Flask, render_template, request
+from mysql.connector import connect
+
+
+
 
 app = Flask(__name__)
+
+def mysql_connection():
+    connection = connect(
+        host = 'localhost',
+        user = 'root',
+        password = '1234',
+        database = 'nodemysql2'
+    )    
+    connection =  mysql_connection()
+    query = "INSERT INTO books (title, pageqty) VALUES (%s,%s)"
+    cursor = connection.cursor()
+    cursor.execute(query)
+
 
 @app.route("/")
 def home():
@@ -22,6 +39,15 @@ def initPage():
 @app.route("/createUser")
 def createUser():
     return render_template('createAcount.html', titulo = "CADASTRAR USUÁRIO") 
+
+@app.route("/createUser/insert", methods = ["POST"])
+def  saveDataBase():
+    name = request.form['name']
+    senha = request.form['senha']
+    
+    
+
+    return render_template('homePage.html', Titulo = "Home Page") 
 
 app.run()
     

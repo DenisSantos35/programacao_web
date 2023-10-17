@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina login</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
     <h1>{{Titulo}}</h1>  
-    <form action="/homePage" method="post">
-        <p><input type="text" name="name" placeholder="Digite seu nome"></p>
-        <p><input type="text" name="senha" placeholder="Digite sua senha"></p>
-        <hr>
-        <p><input type="submit" value="LOGAR"></p>
-    </form>  
+    <div class="btn-login">
+        <form action="/homePage" method="post" class="form-login">
+            <p><input type="text" name="name" placeholder="Digite seu nome"></p>
+            <p><input type="text" name="senha" placeholder="Digite sua senha"></p>
+            <p><input type="submit" value="LOGAR"></p>
+        </form>  
+    </div>
     <p>{{resposta}}</p>
 </body>
 </html>

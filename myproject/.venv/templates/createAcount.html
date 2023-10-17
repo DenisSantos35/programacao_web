@@ -7,10 +7,15 @@
 </head>
 <body>
     <h1>{{titulo}}</h1>
-    <form action="/cadastrar" method="post">
-        <p><input type="text" name="name"></p>
-        <p><input type="text" name="senha"></p>
-        <hr>
+    <form action="/createUser/insert" method="post">
+       <div>
+        <label for="name">Nome:</label>
+        <input type="text" name="name" placeholder="Digite seu nome:">
+       </div>
+       <div>
+        <label for="senha">Senha:</label>
+        <input type="text" name="senha" placeholder="Digite sua senha:">
+       </div>        
         <p><input type="submit" value="CADASTRAR"></p>
     </form>
     
