@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro De usuário</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <nav>
+        <h1>{{titulo}}</h1>
+    </nav>
+    <a href="/createUser">Cadastro Usuário</a>
+    <div class="btn-cliente">
+        <form action="/createUser/post" method="post" class="form-login">
+            <div>
+             <label for="name">Nome:</label>
+             <input type="text" name="name" placeholder="Digite seu nome:">
+            </div>
+            <div>
+             <label for="cpf">CPF:</label>
+             <input type="text" name="cpf" placeholder="Digite seu cpf:">
+            </div>    
+            <div>
+             <label for="email">E-mail:</label>
+             <input type="text" name="email" placeholder="Digite seu E-mail:">
+            </div>    
+            <div>
+             <label for="endereco">Endereço:</label>
+             <input type="text" name="endereco" placeholder="Digite seu endereco:">
+            </div>  
+            <div>
+             <label for="bairro">Bairro:</label>
+             <input type="text" name="bairro" placeholder="Digite seu bairro:">
+            </div> 
+            <div>
+             <label for="cep">Cep:</label>
+             <input type="text" name="cep" placeholder="Digite seu cep:">
+            </div> 
+            <div>
+             <label for="cidade">Cidade:</label>
+             <input type="text" name="cidade" placeholder="Digite sua cidade:">
+            </div>
+             <p><input type="submit" value="CADASTRAR"></p>
+         </form>  
+    </div>  
+</body>
+</html>

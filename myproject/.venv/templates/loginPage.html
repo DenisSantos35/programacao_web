@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1>{{Titulo}}</h1>  
+    <nav>
+        <h1>{{Titulo}}</h1> 
+    </nav> 
+    <a href="/">Voltar</a>
     <div class="btn-login">
         <form action="/homePage" method="post" class="form-login">
             <p><input type="text" name="name" placeholder="Digite seu nome"></p>
@@ -15,6 +18,8 @@
             <p><input type="submit" value="LOGAR"></p>
         </form>  
     </div>
-    <p>{{resposta}}</p>
+    <div class="btn-resposta">
+        <p>{{resposta}}</p>
+    </div>
 </body>
 </html>

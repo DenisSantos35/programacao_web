@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
-from mysql.connector import connect
+#from mysql.connector import connect
 
 
 
 
 app = Flask(__name__)
 
-def mysql_connection():
+'''def mysql_connection():
     connection = connect(
         host = 'localhost',
         user = 'root',
@@ -16,7 +16,7 @@ def mysql_connection():
     connection =  mysql_connection()
     query = "INSERT INTO books (title, pageqty) VALUES (%s,%s)"
     cursor = connection.cursor()
-    cursor.execute(query)
+    cursor.execute(query)'''
 
 
 @app.route("/")
@@ -44,10 +44,29 @@ def createUser():
 def  saveDataBase():
     name = request.form['name']
     senha = request.form['senha']
+    print(name, senha)
+    return render_template('homePage.html', Titulo = "Home Page", resposta = 'Deseja cadastrar cliente') 
+
+@app.route("/createUser/cliente")
+def createCliente():
+    return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente', resposta = 'Cliente cadastrado com sucesso')
+
+@app.route("/createUser/post", methods = ["POST"])
+def searchCliente():
+    name = request.form['name']
+    cpf = request.form['cpf']
+    email = request.form['email']
+    endereco = request.form['endereco']
+    bairro = request.form['bairro']
+    cep = request.form['cep']
+    cidade = request.form['cidade']
+    
+    print(name, cpf, email, endereco, bairro, cep, cidade)
+    return render_template('homePage.html', Titulo = "Home Page", resposta ='Cliente cadastrado com sucesso' )
     
     
 
-    return render_template('homePage.html', Titulo = "Home Page") 
+    
 
 app.run()
     

@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro De usuário</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1>{{titulo}}</h1>
-    <form action="/createUser/insert" method="post">
-       <div>
-        <label for="name">Nome:</label>
-        <input type="text" name="name" placeholder="Digite seu nome:">
-       </div>
-       <div>
-        <label for="senha">Senha:</label>
-        <input type="text" name="senha" placeholder="Digite sua senha:">
-       </div>        
-        <p><input type="submit" value="CADASTRAR"></p>
-    </form>
+    <nav>
+        <h1>{{titulo}}</h1>
+    </nav>
+    <a href="/createUser/cliente">Cadastrar cliente:</a>    
+    <div class="btn-cliente">
+        <form action="/createUser/insert" method="post" class="form-login">
+            <div>
+             <label for="name">Nome:</label>
+             <input type="text" name="name" placeholder="Digite seu nome:">
+            </div>
+            <div>
+             <label for="cpf">Senha:</label>
+             <input type="text" name="senha" placeholder="Digite sua senha:">
+            </div>        
+             <p><input type="submit" value="CADASTRAR"></p>
+         </form>
+    </div>
     
 </body>
 </html>
