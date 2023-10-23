@@ -9,19 +9,27 @@
 <body>
     <nav>
         <h1>{{titulo}}</h1>
+        <a href="/homePage">Voltar</a>
+        <a href="/createUser/cliente">Cadastrar Cliente</a>
     </nav>
-    <a href="/createUser/cliente">Cadastrar cliente:</a>    
+       
     <div class="btn-cliente">
         <form action="/createUser/insert" method="post" class="form-login">
             <div>
-             <label for="name">Nome:</label>
-             <input type="text" name="name" placeholder="Digite seu nome:">
+                <label for="name">Nome:</label>
+                <input type="text" name="name" placeholder="Digite seu nome:">
             </div>
             <div>
-             <label for="cpf">Senha:</label>
-             <input type="text" name="senha" placeholder="Digite sua senha:">
+                 <label for="email">E-mail:</label>
+                 <input type="text" name="email" placeholder="Digite seu E-mail:">
+            </div>
+            <div>
+                <label for="cpf">Senha:</label>
+                <input type="text" name="senha" placeholder="Digite sua senha:">
             </div>        
              <p><input type="submit" value="CADASTRAR"></p>
+             <br>
+             <p>{{resposta}}</p>
          </form>
     </div>
     

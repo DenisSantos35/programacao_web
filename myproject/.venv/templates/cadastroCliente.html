@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         <h1>{{titulo}}</h1>
+        <a href="/homePage">Voltar</a>
+        <a href="/createUser">Cadastrar usuário</a> 
     </nav>
-    <a href="/createUser">Cadastro Usuário</a>
+    
     <div class="btn-cliente">
         <form action="/createUser/post" method="post" class="form-login">
             <div>
