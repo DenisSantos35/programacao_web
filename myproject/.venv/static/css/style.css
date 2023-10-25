@@ -49,6 +49,26 @@ a{
     font-size: 30;
 }
 
+
+.btn-cliente table{
+    margin: 0 auto;
+    
+    
+}
+
+.btn-cliente table tr th{
+    border: 1px solid #333;
+}
+.td{
+    border: 1px solid #333;
+}
+.resposta{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 20px;
+    color:blueviolet;
+}
+
 .btn-cliente{
     padding: 30px;
     border: 1px solid black;

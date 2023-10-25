@@ -1,10 +1,6 @@
 from flask import Flask, render_template, request
 import mysql.connector
 
-
-
-
-
 app = Flask(__name__)    
 
 
@@ -16,47 +12,52 @@ def home():
 def login():
     return render_template('loginPage.html', Titulo = "Página Login") 
 
-@app.route("/homePage", methods=["POST"] ) 
+@app.route("/homePage", methods=["POST"]) 
 def initPage():
     user_login = request.form['name']
-    user_senha = request.form['senha']    
+    user_senha = request.form['senha']   
     if user_login == 'admin' and user_senha == '123':
         return render_template('homePage.html', Titulo = "Home Page")
     else:
         return render_template('loginPage.html', Titulo = "Página Login", resposta = "Usuário ou senha incorretos") 
+    
 @app.route("/homePage")
 def getHomePage():
-    return render_template('homePage.html', Titulo = "Home Page")
+    return render_template('homePage.html', Titulo = "Home Page", resultado = "")
     
 @app.route("/createUser")
 def createUser():
-    return render_template('createAcount.html', titulo = "CADASTRAR USUÁRIO") 
+    resultado = getQuery()
+    return render_template('createAcount.html', titulo = "CADASTRAR USUÁRIO", resultado = resultado) 
 
 @app.route("/createUser/insert", methods = ["POST"])
 def saveDataBase():
     name = request.form['name']
     email =request.form['email']
-    senha = request.form['senha']    
+    senha = request.form['senha'] 
     
-    newUserInsert(name, senha, email)      
-    return render_template('homePage.html', Titulo = "Home Page", resposta = 'Deseja cadastrar cliente') 
+    try:
+        queryInsert(name, senha, email)
+    except:
+        return render_template('homePage.html', Titulo = "Home Page", resposta = "Nome ja cadastrado")         
+         
+    return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados cadastrados com sucesso") 
     
-@app.route("/createUser/cliente")
+@app.route("/createClient")
 def createCliente():
-    return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente', resposta = 'Cliente cadastrado com sucesso')
+    return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente')
 
-@app.route("/createUser/post", methods = ["POST"])
+@app.route("/createClient", methods = ["POST"])
 def searchCliente():
-    name = request.form['name']
     cpf = request.form['cpf']
+    nome = request.form['name']    
     email = request.form['email']
-    endereco = request.form['endereco']
+    rua = request.form['rua']
     bairro = request.form['bairro']
     cep = request.form['cep']
-    cidade = request.form['cidade']
-    
-    print(name, cpf, email, endereco, bairro, cep, cidade)
-    return render_template('homePage.html', Titulo = "Home Page", resposta ='Cliente cadastrado com sucesso' )
+    cidade = request.form['cidade']    
+    queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade)    
+    return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados cadastrados com sucesso") 
 
 
 # Conecao com banco e um insert
@@ -67,20 +68,37 @@ def conn():
         password = 'aluno_fatec',   
         database = 'meu_banco' 
     )
+
+#cricao de clientes
+def queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade):
+    db = conn()
+    myCursor = db.cursor()
+    query = "INSERT INTO denis_TB_cliente (CPF, NOME, EMAIL, RUA, BAIRRO, CEP,CIDADE) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+    values = (cpf, nome, email, rua, bairro, cep, cidade)
+    myCursor.execute(query, values)
+    db.commit()
+    return "Dados salvos com sucesso"
     
 # insert no banco de dados
-def newUserInsert(user, password, email):
+def queryInsert(name, senha, email):
     db = conn()
     myCursor = db.cursor()
     query = "INSERT INTO denis_TB_user (USUARIO, SENHA, EMAIL) VALUES (%s,%s, %s)"
-    values = (user, password, email)
+    values = (name, senha, email)
     myCursor.execute(query, values)
-    db.commit()
-    return "Dados salvo com sucesso"
+    db.commit()  
+    return "Dados salvos com sucesso"
 
-
-
-   
+def getQuery():
+    db = conn()
+    mycursor = db.cursor()
+    query = 'SELECT USUARIO, EMAIL FROM denis_TB_user'
+    mycursor.execute(query)
+    resultado = mycursor.fetchall()
+    
+    return resultado
+    
+    
 
 app.run()
     

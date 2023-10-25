@@ -10,7 +10,7 @@
     <nav>
         <h1>{{titulo}}</h1>
         <a href="/homePage">Voltar</a>
-        <a href="/createUser/cliente">Cadastrar Cliente</a>
+        <a href="/createClient">Cadastrar Cliente</a>
     </nav>
        
     <div class="btn-cliente">
@@ -24,14 +24,33 @@
                  <input type="text" name="email" placeholder="Digite seu E-mail:">
             </div>
             <div>
-                <label for="cpf">Senha:</label>
+                <label for="senha">Senha:</label>
                 <input type="text" name="senha" placeholder="Digite sua senha:">
             </div>        
              <p><input type="submit" value="CADASTRAR"></p>
-             <br>
-             <p>{{resposta}}</p>
+             <br>                 
          </form>
     </div>
+    <div class="btn-cliente">
+        <table>
+            <tr>
+                <th>login</th>
+                <th>email</th>
+            </tr>
+            {% for resultado in resultado %}
+                <tr>
+                    <td class="td">{{resultado[0]}}</td>
+                    <td class="td">{% if resultado[1] is not none %}
+                            {{resultado[1]}}
+                        {%else%}
+                            Não há cadastro
+                        {%endif%}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+            
     
 </body>
 </html>
