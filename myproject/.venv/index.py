@@ -43,9 +43,12 @@ def saveDataBase():
          
     return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados cadastrados com sucesso") 
     
-@app.route("/createClient")
+@app.route("/createClient", methods = ["GET"])
 def createCliente():
-    return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente')
+    
+    resultado = querySearchCliente()
+        
+    return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente', resultado = resultado)
 
 @app.route("/createClient", methods = ["POST"])
 def searchCliente():
@@ -56,6 +59,10 @@ def searchCliente():
     bairro = request.form['bairro']
     cep = request.form['cep']
     cidade = request.form['cidade']    
+    
+    if(not cpf or not nome or not email or not rua or not bairro or not cep or not cidade ):
+        return render_template('cadastroCliente.html', titulo = 'Cadastrar Cliente', resposta= "Digite os dados corretamente")
+    
     queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade)    
     return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados cadastrados com sucesso") 
 
@@ -78,7 +85,15 @@ def queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade):
     myCursor.execute(query, values)
     db.commit()
     return "Dados salvos com sucesso"
-    
+
+#buscando todos os dados dos cliente
+def querySearchCliente():
+    db = conn()
+    mycursor = db.cursor()
+    query = 'SELECT * FROM denis_TB_cliente'
+    mycursor.execute(query)
+    resultado = mycursor.fetchall()
+    return resultado   
 # insert no banco de dados
 def queryInsert(name, senha, email):
     db = conn()
@@ -95,9 +110,7 @@ def getQuery():
     query = 'SELECT USUARIO, EMAIL FROM denis_TB_user'
     mycursor.execute(query)
     resultado = mycursor.fetchall()
-    
-    return resultado
-    
+    return resultado    
     
 
 app.run()

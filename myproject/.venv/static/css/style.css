@@ -51,9 +51,32 @@ a{
 
 
 .btn-cliente table{
-    margin: 0 auto;
+    margin: 0 auto; 
+    border-collapse: none;
+   
     
+}
+.btn-result{
+    margin-top: 30px;
+    border: none;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 40px;
     
+}
+.btn-result table tr th{
+    border: 1px solid #000;
+    background-color: rgb(95, 100, 100);
+    padding: 5px;
+    
+    color: #fff;
+}
+
+.btn-result table tr td{
+    border: 1px solid #000;
+    background-color: rgb(218, 220, 220);
+    padding: 5px;
+    color: #000;
 }
 
 .btn-cliente table tr th{
@@ -90,4 +113,15 @@ a{
 .btn-cliente .form-login p{
     margin: 1em auto;
     padding: 2px;
+}
+
+.table-cliente{
+    margin-bottom: 20px;
+    margin-top: 30px;
+    align-items: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    max-width: 60%;
+    display: flex;
+    justify-content: baseline;
 }

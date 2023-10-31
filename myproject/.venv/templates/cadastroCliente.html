@@ -46,5 +46,31 @@
              <p><input type="submit" value="CADASTRAR"></p>
          </form>  
     </div>  
+    {{resposta}}
+    <div class="table-cliente">
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>CEP</th>
+                <th>E-mail</th>
+                <th>Rua</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+            </tr>
+            {% for resultado in resultado %}
+                <tr>
+                    <td class="td">{{resultado[1]}}</td>
+                    <td class="td">{{resultado[0]}}</td>
+                    <td class="td">{{resultado[5]}}</td>
+                    <td class="td">{{resultado[2]}}</td>
+                    <td class="td">{{resultado[3]}}</td>
+                    <td class="td">{{resultado[4]}}</td>
+                    <td class="td">{{resultado[5]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div> 
+
 </body>
 </html>
