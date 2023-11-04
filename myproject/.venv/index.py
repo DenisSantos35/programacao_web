@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 
 app = Flask(__name__)    
@@ -37,6 +37,9 @@ def saveDataBase():
     senha = request.form['senha'] 
     
     try:
+        if name == "" or email == "" or senha == "":
+            return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados invalidos, Digite algum dado para continuar")
+                        
         queryInsert(name, senha, email)
     except:
         return render_template('homePage.html', Titulo = "Home Page", resposta = "Nome ja cadastrado")         
@@ -66,6 +69,15 @@ def searchCliente():
     queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade)    
     return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados cadastrados com sucesso") 
 
+@app.route("/excluir_usuario/<resultado>")
+def excluir_usuario(resultado):
+    if resultado == "":
+            return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados invalidos, Digite algum dado para continuar")
+    print(resultado)
+    delete(resultado)
+    return  render_template('homePage.html', Titulo = "Home Page", resposta = "Dado deletado com sucesso") 
+    
+
 
 # Conecao com banco e um insert
 def conn():
@@ -75,6 +87,15 @@ def conn():
         password = 'aluno_fatec',   
         database = 'meu_banco' 
     )
+#Excluir usuário 
+def delete(user):
+    db = conn()
+    myCursor = db.cursor()
+    query = "DELETE FROM denis_TB_user WHERE USUARIO = '" + user + "'"
+    print(query)
+    myCursor.execute(query)
+    db.commit()
+    return "Dados excluidos com sucesso"
 
 #cricao de clientes
 def queryInsertCliente(cpf, nome, email, rua, bairro, cep, cidade):

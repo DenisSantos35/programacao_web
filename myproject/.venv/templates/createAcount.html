@@ -46,6 +46,9 @@
                             Não há cadastro
                         {%endif%}
                     </td>
+                    <td>
+                        <a href= {{url_for("excluir_usuario", resultado=resultado[0]) }} >Excluir</a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
