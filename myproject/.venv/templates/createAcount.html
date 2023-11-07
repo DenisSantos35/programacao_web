@@ -47,8 +47,11 @@
                         {%endif%}
                     </td>
                     <td>
-                        <a href= {{url_for("excluir_usuario", resultado=resultado[0]) }} >Excluir</a>
+                        <a href= {{url_for("excluir_usuario", resultado=resultado[0])}} >Excluir</a>
                     </td>
+                    <td>
+                        <a href= {{url_for("editUser", editUser=resultado[0])}} >Editar</a>
+                    </td>                    
                 </tr>
             {% endfor %}
         </table>

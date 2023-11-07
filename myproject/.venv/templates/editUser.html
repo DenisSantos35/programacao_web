@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro De usuário</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <nav>
+        <h1>{{titulo}}</h1>
+        <a href="/homePage">Voltar</a>
+        <a href="/createClient">Cadastrar Cliente</a>
+    </nav>
+       
+    <div class="btn-cliente">
+        <form action="#" method="post" class="form-login">
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" name="name" placeholder="Digite seu nome:">
+            </div>
+            <div>
+                 <label for="email">E-mail:</label>
+                 <input type="text" name="email" placeholder="Digite seu E-mail:">
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="text" name="senha" placeholder="Digite sua senha:">
+            </div>        
+                <p><input type="submit" value="Editar"></p>
+             <br>                 
+         </form>
+    </div>    
+</body>
+</html>

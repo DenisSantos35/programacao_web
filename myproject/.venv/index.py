@@ -3,7 +3,6 @@ import mysql.connector
 
 app = Flask(__name__)    
 
-
 @app.route("/")
 def home():
     return render_template('index.html', Titulo= "PAGINA INICIAL")
@@ -73,12 +72,15 @@ def searchCliente():
 def excluir_usuario(resultado):
     if resultado == "":
             return render_template('homePage.html', Titulo = "Home Page", resposta = "Dados invalidos, Digite algum dado para continuar")
-    print(resultado)
     delete(resultado)
     return  render_template('homePage.html', Titulo = "Home Page", resposta = "Dado deletado com sucesso") 
-    
 
+@app.route("/editUser/<editUser>")
+def editUser(editUser):   
+    results = selectUserOne(editUser)       
+    return render_template("editUser.html", Titulo = "Editar Usuário")
 
+# *********************************************************************************************************************
 # Conecao com banco e um insert
 def conn():
     return mysql.connector.connect(
@@ -87,6 +89,15 @@ def conn():
         password = 'aluno_fatec',   
         database = 'meu_banco' 
     )
+#buscar dados usuario filtrado
+def selectUserOne(keyUser):
+    db = conn()
+    mycursor = db.cursor()
+    query = "SELECT USUARIO, EMAIL, SENHA FROM denis_TB_user WHERE USUARIO = '"+ keyUser +"'" 
+    mycursor.execute(query)
+    resultado = mycursor.fetchone()
+    return resultado  
+    
 #Excluir usuário 
 def delete(user):
     db = conn()
