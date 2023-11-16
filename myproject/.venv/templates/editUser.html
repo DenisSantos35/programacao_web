@@ -14,21 +14,22 @@
     </nav>
        
     <div class="btn-cliente">
-        <form action="#" method="post" class="form-login">
-            <div>
-                <label for="name">Nome:</label>
-                <input type="text" name="name" placeholder="Digite seu nome:">
-            </div>
-            <div>
-                 <label for="email">E-mail:</label>
-                 <input type="text" name="email" placeholder="Digite seu E-mail:">
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="text" name="senha" placeholder="Digite sua senha:">
-            </div>        
-                <p><input type="submit" value="Editar"></p>
-             <br>                 
+        <form action="/update_user" method="post" class="form-login">            
+                <div>
+                    <label for="name">Nome:</label>
+                    <input type="text" name="name" placeholder="Digite seu nome:" value={{editUser[0]}}>
+                </div>
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="text" name="email" placeholder="Digite seu E-mail:" value={{editUser[1]}}>
+                </div>
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="text" name="senha" placeholder="Digite sua senha:" value={{editUser[2]}}>
+                </div>        
+                    <p><input type="submit" value="Editar"></p>
+                <br>  
+                           
          </form>
     </div>    
 </body>

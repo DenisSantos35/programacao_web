@@ -78,7 +78,18 @@ def excluir_usuario(resultado):
 @app.route("/editUser/<editUser>")
 def editUser(editUser):   
     results = selectUserOne(editUser)       
-    return render_template("editUser.html", Titulo = "Editar Usuário")
+    return render_template("editUser.html", Titulo = "Editar Usuário", editUser = results)
+
+@app.route("/update_user", methods=["POST"])
+def update_user():
+    usuario = request.form["name"]
+    email = request.form["email"]
+    senha = request.form["senha"]
+    
+    updateDataUser(usuario, email, senha)    
+    
+    return  render_template('homePage.html', Titulo = "Home Page", resposta = "Dado atualizado com sucesso") 
+    
 
 # *********************************************************************************************************************
 # Conecao com banco e um insert
@@ -89,6 +100,15 @@ def conn():
         password = 'aluno_fatec',   
         database = 'meu_banco' 
     )
+#Atualizar usuário
+def updateDataUser(usuario, email, senha):
+    db = conn()
+    mycursor = db.cursor()
+    query = "UPDATE denis_TB_user SET USUARIO = '"+usuario+"', SENHA ='"+senha+"',EMAIL= "+email+"' WHERE USUARIO = '"+usuario+""
+    mycursor.execute(query)
+    db.commit()
+    return "Dados alterado com sucesso"
+    
 #buscar dados usuario filtrado
 def selectUserOne(keyUser):
     db = conn()
